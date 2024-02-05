@@ -1,0 +1,41 @@
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+#imageid{
+    height: 70vh; /* Set the height of the container to 100% of the viewport height */
+    width: 100%; /* Set the width of the container to 100% */
+    position: relative;
+    background-color: black; /* Set a background color in case the image is not fully loaded */
+    background-image: url("../components/girl.jpg");
+    background-size: cover; /* Ensure the image covers the entire container */
+    background-position: center; /* Center the image within the container */
+    background-repeat: no-repeat; /* Do not repeat the background image */
+    display: flex;
+
+    
+}
+
+#imageid::before{
+    content: "";
+    position: absolute;
+    background-repeat: no-repeat;
+    opacity: 40%; 
+    inset: 0;
+
+  }
+
+
+ #head{
+   
+
+    margin: 0px;
+    padding: 3cm;
+
+    /* background-color: aliceblue; */
+    font-weight: bold;
+    background-color: rgb(242, 240, 255);
+    color: rgb(115, 0, 255);
+    opacity: 0.5;
+  }

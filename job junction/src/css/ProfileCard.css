@@ -1,0 +1,80 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .title{
+    color: grey;
+    font-size: 18px;
+  }
+
+  .b {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 75%;
+    font-size: 18px;
+    margin: 4px;
+  }
+
+  .b2 {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: rgb(255, 0, 0);
+    text-align: center;
+    cursor: pointer;
+    width: 75%;
+    font-size: 18px;
+    margin: 4px;
+  }
+  
+  a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+  }
+  
+  .b:hover, a:hover {
+    opacity: 0.7;
+  }
+  .b2:hover, a:hover {
+    opacity: 0.7;
+  }
+
+  #upload{
+    color: rgb(18, 48, 197);
+    background-color: rgb(228, 226, 222);
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  #delete{
+    color: rgb(255, 0, 0);
+    background-color: rgb(228, 226, 222);
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+
+  #image{
+    height: 2cm;
+    width: 2cm;
+    transition: transform 0.5s ease;
+  }
+
+  #image:hover{
+    transform: scale(1.1);
+  }
