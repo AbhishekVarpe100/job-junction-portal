@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const mysql = require("mysql");
 const bcrypt = require("bcrypt");
 const cors = require("cors");
+const fs=require('fs');
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
@@ -146,17 +147,36 @@ app.put("/editphoto", upload.single("file"), (req, res) => {
   // console.log(filename,username,password);
 
   try {
-    connection.query(
-      "update profilephoto set photo=? where username=? and password=?",
-      [filename,username, password],
-      (err, result) => {
-        if (err) {
-          console.log(err);
-        } else {
-          res.status(200).send("uploaded");
-        }
+
+    connection.query('select photo from profilephoto where username=? and password=?',[username,password],(err,result)=>{
+      if(err){
+        console.log(err);
       }
-    );
+      else{
+        // fs.unlinkSync(`./Public/Images/${result[0].photo}`)
+        fs.unlink(`./Public/Images/${result[0].photo}`,(err,result)=>{
+          if(err){
+            console.log(err);
+          }
+          else{
+
+            connection.query(
+              "update profilephoto set photo=? where username=? and password=?",
+              [filename,username, password],
+              (err, result) => {
+                if (err) {
+                  console.log(err);
+                } else {
+                  res.status(200).send("uploaded");
+                }
+              }
+            );
+            
+          }
+        })
+      }
+    })
+
   } catch (error) {
     console.log(error);
   }
@@ -231,14 +251,29 @@ app.delete('/deletephoto',(req,res)=>{
   console.log(name,password);
 
   try{
-    connection.query('delete from profilephoto where username=? and password=?',[name,password],(err,result)=>{
+
+    connection.query('select photo from profilephoto where username=? and password=?',[name,password],(err,result)=>{
       if(err){
         console.log(err);
       }
       else{
-        res.json('success')
+        // fs.unlinkSync(`./Public/Images/${result[0].photo}`)
+        fs.unlink(`./Public/Images/${result[0].photo}`,(err,result)=>{
+          if(err){
+            console.log(err);
+          }
+          else{
+
+            connection.query('delete from profilephoto where username=? and password=?',[name,password],(err,result)=>{
+
+              res.json('success');
+            })
+            
+          }
+        })
       }
     })
+
   }
   catch(err){
     console.log(err);
