@@ -20,8 +20,8 @@ import Animation from './components/HomeComponents/Animation';
 function App() {
   
   const handleChildData = (name,password) => {
-    setName(name);
-    setPassword(password);
+    // setName(name);
+    // setPassword(password);
   };
 
   return (

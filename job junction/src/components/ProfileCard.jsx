@@ -76,9 +76,9 @@ function ProfileCard() {
       
       {spin ? (
         <center>
-          <span class="loader"></span>
+          <span className="loader"></span>
         </center>
-      ) : (<><u className="m-4 p-4"><Link to='/home'>Back To Home <i class="fa-solid fa-house"></i></Link></u>
+      ) : (<><u className="m-4 p-4"><Link to='/home'>Back To Home <i className="fa-solid fa-house"></i></Link></u>
         <div className="card">
           <strong>Your profile</strong>
           <center>
@@ -89,9 +89,9 @@ function ProfileCard() {
             {
               photo?
               <div><Link to="/editphoto">
-              <i title="Edit photo" class="fa-solid fa-pen-to-square" id="upload"></i></Link>
+              <i title="Edit photo" className="fa-solid fa-pen-to-square" id="upload"></i></Link>
 
-              <Link ><i onClick={()=>handleDelete(username,password)} title="Delete photo" class="fa-solid fa-trash" id="delete"></i></Link>
+              <Link ><i onClick={()=>handleDelete(username,password)} title="Delete photo" className="fa-solid fa-trash" id="delete"></i></Link>
               
             </div>
             :

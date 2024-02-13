@@ -1,0 +1,47 @@
+.job-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color:aliceblue;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-container {
+    flex: 1;
+    justify-content: flex-start; /* Aligns the image at the top left */
+    align-items: flex-start; /* Aligns the image at the top left */
+    padding: 20px; /* Add padding for spacing */
+}
+
+.image-container img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.details {
+    padding: 20px;
+}
+
+.company-name {
+    font-size: 1.5em;
+}
+
+.job-type, .job-category, .salary {
+    margin: 5px 0;
+}
+
+.apply-button {
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 12px;
+    /* transition: background-color 0.3s ease; */
+}
+
+.apply-button:hover {
+    background-color: #1a3a5c;
+}

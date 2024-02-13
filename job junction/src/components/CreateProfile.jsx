@@ -107,7 +107,7 @@ function CreateProfile() {
             className="btn w-50 btn-primary"
             type="submit"
             value="Create profile"
-          />
+          />  
 
           <div>{create}</div>
         </form>

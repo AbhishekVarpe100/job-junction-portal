@@ -23,6 +23,7 @@ function Photo() {
       alert("Choose a photo to upload")
     }
     else{
+      console.log(formdata)
       axios.post("http://localhost:2000/upload", formdata).then((res) => {
         if (res.data == "uploaded") {
           alert("Photo uploaded");

@@ -5,7 +5,14 @@ const bcrypt = require("bcrypt");
 const cors = require("cors");
 const fs=require('fs');
 const app = express();
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
+
+
+
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
+
 app.use(cors());
 app.use(express.json());
 
@@ -339,3 +346,77 @@ app.put('/editinfo/:id',(req,res)=>{
   // console.log(firstName,lastName,designation,skills,experience);
 })
 
+
+
+app.post('/createjob',(req,res)=>{
+  let {
+    username,
+    password,
+    jobTitle,
+    companyName,
+    jobLocation,
+    education,
+    salary,
+    benefits,
+    deadline,
+    phoneNumber,
+    email,
+    jobDescription,
+    skillsRequired,
+    jobType,
+    jobCategory,
+  }=req.body;
+  
+
+  console.log(username,password)
+  try{
+    let query='insert into createjob(jobtitle,companyname,joblocation,education,salary,benefits,      deadline,phone,email,jobdesc,skills,type,category,username,password) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+
+    connection.query(query,[jobTitle,
+      companyName,
+      jobLocation,
+      education,
+      salary,
+      benefits, 
+      deadline,
+      phoneNumber,
+      email,
+      jobDescription,
+      skillsRequired,
+      jobType,
+      jobCategory,
+      username,
+      password],(err,result)=>{
+      if(err){
+        console.log(err);
+      }
+      else{
+        res.json('created');
+      }
+    })
+  }
+
+  catch(err){
+    console.log(err);
+  }
+
+})
+
+
+//get all jobs
+
+app.get('/getjobs',(req,res)=>{
+  try {
+    connection.query('select * from createjob',(err,result)=>{
+      if(err){
+        console.log(err);
+      }
+      else{
+        // console.log(result.jobdesc)
+        res.json(result)
+      }
+    })
+  } catch (error) {
+    console.log(error);
+  }
+})
