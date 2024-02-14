@@ -26,7 +26,7 @@ function App() {
 
   return (
     <>
-    <div>
+    <div className='container'>
       <BrowserRouter>
       <Navbar></Navbar>
       <Routes>

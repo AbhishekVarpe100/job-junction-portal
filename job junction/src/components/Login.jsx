@@ -88,7 +88,7 @@ const Login = ({ onChildData }) => {
           required
         />
         <input
-          title="sign up"
+          title="login"
           id="submit"
           type="submit"
           value={login ? login : "login"}

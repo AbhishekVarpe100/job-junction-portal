@@ -71,7 +71,7 @@ const CreateJob = () => {
   };
 
   return (
-    <div className="rounded bg-secondary border text-white border-primary m-4">
+    <div className="rounded bg-dark border text-white m-4">
       <div className="p-4">
         {create}
         <div className="card-header h2 text-center">Create a Job</div>
@@ -264,7 +264,7 @@ const CreateJob = () => {
             </div>
           </div>
           <div className="text-center">
-            <input className="btn btn-dark w-25" type="submit" value="Create job" />
+            <input className="btn btn-warning w-25" type="submit" value="Create job" />
           </div>
         </form>
       </div>
