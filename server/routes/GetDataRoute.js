@@ -79,6 +79,7 @@ router.get('/getjobs',(req,res)=>{
         else{
           // console.log(result.jobdesc)
           res.json(result)
+          
         }
       })
     } catch (error) {
@@ -141,6 +142,50 @@ router.get('/appliedjobs',(req,res)=>{
     }
   })
 
+
+  router.get('/sortby',(req,res)=>{
+    const {sel:value}=req.query;
+    
+    if(value=='jobtitle'){
+
+      connection.query('select * from createjob order by jobtitle',(err,result)=>{
+        if(err){
+          console.log(err)
+        }
+        else{
+          res.json(result)
+          console.log(result)
+  
+        }
+      })
+    }
+    else if(value=='category'){
+      connection.query('select * from createjob order by category',(err,result)=>{
+        if(err){
+          console.log(err)
+        }
+        else{
+          res.json(result)
+          console.log(result)
+  
+        }
+      })
+      
+    }
+    else if(value=='salary'){
+      connection.query('select * from createjob order by salary',(err,result)=>{
+        if(err){
+          console.log(err)
+        }
+        else{
+          res.json(result)
+  
+        }
+      })
+
+    }
+  
+  })
 
 
   

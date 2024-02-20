@@ -123,11 +123,15 @@ function ProfileCard() {
 
 <div>
 
-            <Link  className="text-primary" to='/applicants'>Your applicants</Link>
+            <u>
+              <Link  className="text-primary" to='/applicants'>Your applicants</Link>
+              </u>
 </div>
 <div>
-
+<u>
             <Link  className="text-primary" to='/applied'>Applied Jobs</Link>
+
+</u>
 </div>
           
             

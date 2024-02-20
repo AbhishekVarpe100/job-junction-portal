@@ -100,14 +100,50 @@ function Available() {
       });
   };
 
+const [sel,setSelect]=useState('')
+
+  const handleSelect=(e)=>{
+    setSelect(e.target.value)
+  }
+
+
+  useEffect(()=>{
+    if (sel !== '') {
+      axios.get('http://localhost:2000/sortby',{params:{sel}})
+      .then((res) => {
+        setData([]);
+        return res.data
+        
+      })
+      .then(res=>{
+        setData(res)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+  },[sel])
+
   return (
     <>
+     <select onChange={handleSelect} className='form-select w-25 border border-primary' name="" id="">
+            <option>---sort by---</option>
+            <option value="jobtitle">Title</option>
+            <option value="category">Category</option>
+            <option value="salary">Salary</option>
+          </select>
       {data.length === 0 ? (
         <center>
           <b className='m-4'>No jobs requirement is there! if you want employee then you can create job vacancy and can find a right employee for your organisation.</b>
         </center>
       ) : (
+
+
+        
+
         <div className='row'>
+         
+          
           {data.map((ele, index) => (
             <div className="col-lg-4 col-md-6 col-sm-12" key={index}>
               <div className="job-card">

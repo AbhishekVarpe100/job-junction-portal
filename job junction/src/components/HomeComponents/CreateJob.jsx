@@ -71,7 +71,7 @@ const CreateJob = () => {
   };
 
   return (
-    <div className="rounded bg-dark border text-white m-4">
+    <div className="rounded bg-secondary border text-white m-4">
       <div className="p-4">
         {create}
         <div className="card-header h2 text-center">Create a Job</div>

@@ -5,10 +5,12 @@ function Navbar() {
   const empty=()=>{
     window.location.reload(true);
     localStorage.removeItem('name')
+    localStorage.removeItem('password')
     navigate('/');
   }
+
   let show=false;
-  if(localStorage.getItem('name')){
+  if(localStorage.getItem('name') && localStorage.getItem('password')){
     show=true;
   }
   
