@@ -4,6 +4,10 @@ import '../../css/Available.css';
 
 function Available() {
   const [data, setData] = useState([]);
+  const [username, setUsername] = useState(localStorage.getItem('name'));
+  const [password, setPassword] = useState(localStorage.getItem('password'));
+  const [photo, setPhoto] = useState('');
+  const [applyData, setApplyData] = useState([]); // Initialize applyData as an object
 
   const getData = () => {
     axios.get('http://localhost:2000/getjobs')
@@ -18,6 +22,36 @@ function Available() {
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    if (Object.keys(applyData).length !== 0) {
+      // Ensure applyData is not empty
+      storeApplyData();
+    }
+  }, [applyData]);
+
+
+
+
+  function storeApplyData(){
+    // Check if applyData is not empty
+    // alert(applyData.jobtitle);
+    const dataToSend={
+      ...applyData,
+      'photo':photo,
+      'applicant':username,
+      'appli_password':password
+    }
+
+    axios.post('http://localhost:2000/applytojob',dataToSend)
+    .then(res => {
+      // Handle successful response if needed
+    })
+    .catch(err => {
+      console.log(err)
+    });
+  }
+
 
   const formatDate = (timestamp) => {
     const date = new Date(timestamp);
@@ -39,6 +73,20 @@ function Available() {
         console.log(err)
       })
   }
+
+  const handleApply = (id) => {
+    axios.get("http://localhost:2000/getphoto", { params: { username, password } })
+      .then((res) => {
+        setPhoto(res.data);
+        return axios.get(`http://localhost:2000/getjobinfo/${id}`);
+      })
+      .then((res) => {
+        setApplyData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>
@@ -90,7 +138,7 @@ function Available() {
                   {
                     (localStorage.getItem('name') === ele.username && localStorage.getItem('password') === ele.password) ?
                       <></> :
-                      <a href="#" className="apply-button">Apply Now</a>
+                      <button onClick={() => handleApply(ele.id)} className="apply-button">Apply Now</button>
                   }
 
                   {

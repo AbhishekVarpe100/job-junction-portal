@@ -6,14 +6,14 @@ const connection=require('../Connection')
 //get photo
 router.get('/getphoto',(req,res)=>{
     const {username,password}=req.query;
-    console.log(username)
+    // console.log("Hello")
     try {
       connection.query('select photo from profilephoto where username=? and password=?',[username,password],(err,result)=>{
         if(err){
           console.log(err);
         }
         else if(result.length>0){
-          console.log(result[0].photo);
+          // console.log(result[0].photo);
           res.json(result[0].photo)
         }
       })
@@ -30,7 +30,7 @@ router.get('/getphoto',(req,res)=>{
   //get employee info
 router.get('/getinfo',(req,res)=>{
     const {username,password}=req.query;
-    console.log(username,password);
+    // console.log(username,password);
   
     try {
       connection.query('select * from profile where username=? and password=?',[username,password],(err,result)=>{
@@ -50,6 +50,7 @@ router.get('/getinfo',(req,res)=>{
 
   //get all jobs
 router.get('/getjobs',(req,res)=>{
+  const id=req.params.id;
     try {
       connection.query('select * from createjob',(err,result)=>{
         if(err){
@@ -65,5 +66,27 @@ router.get('/getjobs',(req,res)=>{
     }
   })
 
+
+  //get job info
+router.get('/getjobinfo/:id',(req,res)=>{
+  const id=req.params.id;
+    try {
+      connection.query('select * from createjob where id =?',[id],(err,result)=>{
+        if(err){
+          console.log(err);
+        }
+        else{
+          // console.log(result[0].email)
+          res.json(result[0])
+        }
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  })
+
+
+
+  
 
   module.exports=router;

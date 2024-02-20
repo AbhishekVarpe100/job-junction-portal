@@ -147,5 +147,46 @@ router.post("/upload", upload.single("file"), (req, res) => {
   
   })
   
+
+
+
+  router.post('/applytojob', (req, res) => {
+   
+    const {id,
+      jobtitle,
+      companyname,
+      joblocation,
+      education,
+      salary,
+      benefits,
+      deadline,
+      phone,
+      email,
+      jobdesc,
+      skills,
+      type,
+      category,
+      username,
+      password,
+      photo,
+      applicant,
+      appli_password}=req.body;
+    connection.query('insert into apply(applicant,appli_password,companyname,jobtitle,jobtype,jobcategory,joblocation,createdby,adminpassword) values(?,?,?,?,?,?,?,?,?)',[
+
+      applicant,appli_password,companyname,jobtitle,type,category,joblocation,username,password
+
+      
+      ],(err,result)=>{
+        if(err){
+          console.log(err)
+        }
+        else{
+          // console.log("Success",photo);
+        }
+      })
+    
+  });
+
+
   module.exports=router;
 
