@@ -77,7 +77,7 @@ router.put("/editphoto", upload.single("file"), (req, res) => {
     const id=req.params.id;
   
     const {firstName,lastName,designation,skills,experience}=req.body;
-    const query='update profile set firstname=?, lastname=?, desig=?, skills=?, exp=? where id=?';
+    const query='update profile set firstname=?, lastname=?, desig=?, skill=?, exp=? where id=?';
   
     try {
       connection.query(query,[firstName,lastName,designation,skills,experience,id],(err,result)=>{

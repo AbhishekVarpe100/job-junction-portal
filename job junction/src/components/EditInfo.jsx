@@ -67,7 +67,7 @@ function EditInfo() {
         setLastName(res.data.lastname);
         setDesignation(res.data.desig);
         setExperience(res.data.exp);
-        setSkills(res.data.skills);
+        setSkills(res.data.skill);
       })
       .catch((err) => {});
   }, []);

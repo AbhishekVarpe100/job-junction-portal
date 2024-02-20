@@ -111,7 +111,7 @@ function ProfileCard() {
           <br />
           <span><b>Designation you want </b></span><span className="title">{data.desig}</span>
           <br />
-          <span><b>Your skills </b></span><span className="title">{data.skills}</span>
+          <span><b>Your skills </b></span><span className="title">{data.skill}</span>
           <br />
           <span><b>Experience</b></span><span className="title">{data.exp}</span>
           <br />
@@ -119,6 +119,16 @@ function ProfileCard() {
           <p>
             <Link to={`/editinfo/${data.id}`}><button className="b">Edit profile {<EditIcon></EditIcon>}</button></Link>
             <button onClick={()=>deleteInfo(data.id)} className="b2">Delete profile {<DeleteIcon></DeleteIcon>}</button>
+
+
+<div>
+
+            <Link  className="text-primary" to='/applicants'>Your applicants</Link>
+</div>
+<div>
+
+            <Link  className="text-primary" to='/applied'>Applied Jobs</Link>
+</div>
           
             
           </p>

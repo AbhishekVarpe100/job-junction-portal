@@ -8,6 +8,7 @@ function Available() {
   const [password, setPassword] = useState(localStorage.getItem('password'));
   const [photo, setPhoto] = useState('');
   const [applyData, setApplyData] = useState([]); // Initialize applyData as an object
+  const [userData,setUserData]=useState([]);
 
   const getData = () => {
     axios.get('http://localhost:2000/getjobs')
@@ -24,20 +25,23 @@ function Available() {
   }, []);
 
   useEffect(() => {
-    if (Object.keys(applyData).length !== 0) {
+    if (Object.keys(applyData).length !== 0 && Object.keys(userData).length !== 0 ) {
       // Ensure applyData is not empty
       storeApplyData();
     }
-  }, [applyData]);
+  }, [applyData,userData]);
+
+ 
 
 
 
 
   function storeApplyData(){
     // Check if applyData is not empty
-    // alert(applyData.jobtitle);
+    
     const dataToSend={
       ...applyData,
+      ...userData,
       'photo':photo,
       'applicant':username,
       'appli_password':password
@@ -46,10 +50,14 @@ function Available() {
     axios.post('http://localhost:2000/applytojob',dataToSend)
     .then(res => {
       // Handle successful response if needed
+      setTimeout(() => {
+        alert("Applied successfully!")
+      }, 1000);
     })
     .catch(err => {
       console.log(err)
     });
+    
   }
 
 
@@ -82,6 +90,10 @@ function Available() {
       })
       .then((res) => {
         setApplyData(res.data);
+        return axios.get('http://localhost:2000/getinfoemp',{params:{username,password}});
+      })
+      .then((res)=>{
+        setUserData(res.data);
       })
       .catch((err) => {
         console.log(err);

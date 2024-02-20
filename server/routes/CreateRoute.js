@@ -68,7 +68,7 @@ router.post("/upload", upload.single("file"), (req, res) => {
   
     try {
       connection.query(
-        "insert into profile(username,password,firstname,lastname,desig,skills,exp) values(?,?,?,?,?,?,?)",
+        "insert into profile(username,password,firstname,lastname,desig,skill,exp) values(?,?,?,?,?,?,?)",
         [
           username,
           password,
@@ -149,7 +149,7 @@ router.post("/upload", upload.single("file"), (req, res) => {
   
 
 
-
+//apply for the job
   router.post('/applytojob', (req, res) => {
    
     const {id,
@@ -170,18 +170,26 @@ router.post("/upload", upload.single("file"), (req, res) => {
       password,
       photo,
       applicant,
-      appli_password}=req.body;
-    connection.query('insert into apply(applicant,appli_password,companyname,jobtitle,jobtype,jobcategory,joblocation,createdby,adminpassword) values(?,?,?,?,?,?,?,?,?)',[
+      appli_password,firstname,lastname,desig,skill,exp}=req.body;
 
-      applicant,appli_password,companyname,jobtitle,type,category,joblocation,username,password
+      
+    connection.query('insert into apply(applicant,appli_password,companyname,jobtitle,jobtype,jobcategory,joblocation,createdby,adminpassword,desig) values(?,?,?,?,?,?,?,?,?,?)',[
 
+      applicant,appli_password,companyname,jobtitle,type,category,joblocation,username,password,desig
       
       ],(err,result)=>{
         if(err){
           console.log(err)
         }
         else{
-          // console.log("Success",photo);
+          connection.query('insert into applicants(firstname,lastname,designation,skills,exp,username,pass,owner,password,photo,category,title) values(?,?,?,?,?,?,?,?,?,?,?,?)',[firstname,lastname,desig,skill,exp,applicant,appli_password,username,password,photo,category,jobtitle],(err,result)=>{
+            if(err){{
+              console.log(err)
+            }}
+            else{
+              res.json('success')
+            }
+          })
         }
       })
     

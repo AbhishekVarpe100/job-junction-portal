@@ -1,0 +1,8 @@
+.tablerow:hover .btn{
+    display: block;
+}
+
+
+.btnapplicant{
+    display: none;
+}

@@ -31,10 +31,30 @@ router.get('/getphoto',(req,res)=>{
 router.get('/getinfo',(req,res)=>{
     const {username,password}=req.query;
     // console.log(username,password);
-  
     try {
       connection.query('select * from profile where username=? and password=?',[username,password],(err,result)=>{
         if(err){
+          console.log(err);
+        }
+        else if(result.length>0){
+          res.json(result[0]);
+        }
+      })
+      
+    } catch (error) {
+      console.log(error);
+    }
+    
+  })
+
+
+
+  router.get('/getinfoemp',(req,res)=>{
+    const {username,password}=req.query;
+    // console.log(username,password);
+    try {
+      connection.query('select firstname, lastname, desig, skill, exp from profile where username=? and password=?',[username,password],(err,result)=>{
+        if(err){  
           console.log(err);
         }
         else if(result.length>0){
@@ -78,6 +98,42 @@ router.get('/getjobinfo/:id',(req,res)=>{
         else{
           // console.log(result[0].email)
           res.json(result[0])
+        }
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  })
+
+  //get applicants
+router.get('/getapplicants',(req,res)=>{
+  const {username,password}=req.query;
+    try {
+      connection.query('select * from applicants where owner =? and password=?',[username,password],(err,result)=>{
+        if(err){
+          console.log(err);
+        }
+        else{
+          // console.log(result[0].email)
+          res.json(result)
+        }
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  })
+
+  //get applied jobs
+router.get('/appliedjobs',(req,res)=>{
+  const {username,password}=req.query;
+    try {
+      connection.query('select * from apply where applicant =? and appli_password=?',[username,password],(err,result)=>{
+        if(err){
+          console.log(err);
+        }
+        else{
+          // console.log(result[0].email)
+          res.json(result)
         }
       })
     } catch (error) {

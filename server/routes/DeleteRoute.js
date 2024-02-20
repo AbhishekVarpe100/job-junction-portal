@@ -74,4 +74,83 @@ router.delete('/deleteinfo/:id',(req,res)=>{
     }
   })
 
+
+  //delete applicant
+  router.delete('/deleteapplicant',(req,res)=>{
+    const {id,username,pass,skills,title}=req.query;
+    try {
+
+      connection.query('update apply set status=false where applicant=? and appli_password=? and jobtitle=?',[username,pass,title],(err,result)=>{
+        if(err){
+          console.log(err)
+        }
+        else{
+          connection.query('delete from applicants where id=?',[id],(err,rresult)=>{
+            if(err){
+              console.log(err);
+            }
+            else{
+              res.json('deleted')
+              
+            }
+          })
+
+        }
+      })
+
+      
+    } catch (error) {
+      console.log(error);
+    }
+  })
+
+
+
+  //delete apply
+  router.delete('/deleteapply',(req,res)=>{
+    const {id}=req.query;
+    try {
+      connection.query('delete from apply where id=?',[id],(err,rresult)=>{
+        if(err){
+          console.log(err);
+        }
+        else{
+          res.json('deleted')
+        }
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  })
+
+
+  //hire employee
+  router.delete('/hire',(req,res)=>{
+    const {id,username,pass,skills,title}=req.query;
+    try {
+
+      connection.query('update apply set status=true where applicant=? and appli_password=? and jobtitle=?',[username,pass,title],(err,result)=>{
+        if(err){
+          console.log(err)
+        }
+        else{
+          connection.query('delete from applicants where id=?',[id],(err,rresult)=>{
+            if(err){
+              console.log(err);
+            }
+            else{
+              res.json('deleted')
+              
+            }
+          })
+
+        }
+      })
+
+      
+    } catch (error) {
+      console.log(error);
+    }
+  })
+
   module.exports=router;

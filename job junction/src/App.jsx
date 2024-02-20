@@ -13,6 +13,8 @@ import HomeRoutes from './components/HomeRoutes';
 
 
 import Animation from './components/HomeComponents/Animation';
+import Applicants from './components/Applicants';
+import AppliedJobs from './components/AppliedJobs';
 // import Articles from './components/HomeComponents/Articles';
 // import CreateJob from './components/HomeComponents/CreateJob';
 // import Available from './components/HomeComponents/Available';
@@ -33,7 +35,8 @@ function App() {
         <Route path='/signup' element={<SignUpForm></SignUpForm>}></Route>
         <Route path='/' element={<Login onChildData={handleChildData}></Login>}></Route>
 
-
+        <Route path='/applicants' element={<Applicants></Applicants>}></Route>
+        <Route path='/applied' element={<AppliedJobs></AppliedJobs>}></Route>
 
         {/* nested routes */}
         <Route path='/home' element={<Home></Home>}>
