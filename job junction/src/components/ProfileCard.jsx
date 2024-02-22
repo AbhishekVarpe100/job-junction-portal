@@ -79,7 +79,7 @@ function ProfileCard() {
           <span className="loader"></span>
         </center>
       ) : (<><u className="m-4 p-4"><Link to='/home'>Back To Home <i className="fa-solid fa-house"></i></Link></u>
-        <div className="card">
+        <div className="card1">
           <strong>Your profile</strong>
           <center>
             <img id="image" src={photo?`http://localhost:2000/Images/${photo}`:profile} alt="John" />
@@ -109,11 +109,11 @@ function ProfileCard() {
             <>
             <h3>{data.firstname} {data.lastname}</h3>
           <br />
-          <span><b>Designation you want </b></span><span className="title">{data.desig}</span>
+          <span><b>Designation you want </b><br /></span><span className="title">{data.desig}</span>
           <br />
-          <span><b>Your skills </b></span><span className="title">{data.skill}</span>
+          <span><b>Your skills <br /></b></span><span className="title">{data.skill}</span>
           <br />
-          <span><b>Experience</b></span><span className="title">{data.exp}</span>
+          <span><b>Experience <br /></b></span><span className="title">{data.exp}</span>
           <br />
         
           <p>

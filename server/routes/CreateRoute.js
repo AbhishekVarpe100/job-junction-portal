@@ -233,6 +233,38 @@ router.post("/upload", upload.single("file"), (req, res) => {
     })
   })
 
+  router.post('/likes',(req,res)=>{
+    const {id,username,password,title}=req.body;
+    
+
+    connection.query('select * from likes where id=? and username=? and password=? and title=?',[id,username,password,title],(err,result)=>{
+      if(err){
+        console.log(err)
+      }
+      if(result.length==0){
+        connection.query('insert into likes values(?,?,?,?)',[id,username,password,title],(err,result)=>{
+          if(err){
+            console.log(err)
+          }
+          else{
+            res.json('liked')
+          }
+        })
+      }
+      else if(result.length==1){
+        connection.query('delete from likes where id=? and username=? and password=? and title=?',[id,username,password,title],(err,result)=>{
+          if(err){
+            console.log(err)
+          }
+          else{
+            res.json('deleted')
+          }
+        })
+      }
+    })
+  })
+
+
 
   module.exports=router;
 

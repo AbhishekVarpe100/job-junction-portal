@@ -153,4 +153,38 @@ router.delete('/deleteinfo/:id',(req,res)=>{
     }
   })
 
+//delete article
+  router.delete('/deletearticle/:id',(req,res)=>{
+    const id=req.params.id
+    try {
+
+      connection.query('select image from article where id=?',[id],(err,result)=>{
+        if(err){
+          console.log(err)
+        }
+        else{
+          fs.unlink(`Public/Articles/${result[0].image}`,(err)=>{
+            if(err){
+              console.log(err);
+            }
+            else{
+              connection.query('delete from article where id=?',[id],(err,rresult)=>{
+                if(err){
+                  console.log(err);
+                }
+                else{
+                  res.json('deleted')
+                }
+              })
+            }
+          })
+         
+        }
+      })
+      
+    } catch (error) {
+      console.log(error);
+    }
+  })
+
   module.exports=router;
