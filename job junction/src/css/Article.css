@@ -1,0 +1,66 @@
+.card {
+    width: 100%;
+    height: 400px; /* Set fixed height */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    position: relative; /* Position the buttons relative to the card */
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card-img {
+    width: 100%;
+    height: 50%; /* Adjust height of image */
+    object-fit: cover;
+  }
+  
+  .card-body {
+    padding: 20px;
+    height: 40%; /* Adjust height of body */
+    overflow-y: auto; /* Add scrollbar for overflow */
+  }
+  
+  .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .card-text {
+    font-size: 16px;
+    margin: 10px 0;
+    text-align: left;
+    width: 100%;
+  }
+  
+  .card-buttons {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8); /* Transparent background */
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .like-button,
+  .dislike-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; /* Blue color, you can change it */
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .like-button:hover,
+  .dislike-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  

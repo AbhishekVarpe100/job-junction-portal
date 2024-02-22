@@ -196,5 +196,43 @@ router.post("/upload", upload.single("file"), (req, res) => {
   });
 
 
+
+
+  // const upload2 = multer({ dest: 'Public/Articles' });
+
+  const storage2 = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, "Public/Articles");
+    },
+    filename: (req, file, cb) => {
+      cb(
+        null,
+        file.fieldname + "_" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  
+  const upload2 = multer({
+    storage: storage2,
+  });
+
+
+  router.post('/createarticle',upload2.single('image'),(req,res)=>{
+    const image=req.file.filename;
+    const title=req.body.title;
+    const description=req.body.description;
+    const username=req.body.username;
+    const password=req.body.password;
+    connection.query('insert into article(username,password,title,description,image) values(?,?,?,?,?)',[username,password,title,description,image],(err,result)=>{
+      if(err){
+        console.log(err);
+      }
+      else{
+        res.json('created')
+      }
+    })
+  })
+
+
   module.exports=router;
 

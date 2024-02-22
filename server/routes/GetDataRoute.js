@@ -154,7 +154,7 @@ router.get('/appliedjobs',(req,res)=>{
         }
         else{
           res.json(result)
-          console.log(result)
+          
   
         }
       })
@@ -166,7 +166,7 @@ router.get('/appliedjobs',(req,res)=>{
         }
         else{
           res.json(result)
-          console.log(result)
+         
   
         }
       })
@@ -187,6 +187,19 @@ router.get('/appliedjobs',(req,res)=>{
   
   })
 
+
+  router.get('/getarticles',(req,res)=>{
+
+    connection.query('select * from article',(err,result)=>{
+      if(err){
+        console.log(err)
+      }
+      else{
+        res.json(result)
+      }
+    })
+
+  })
 
   
 
