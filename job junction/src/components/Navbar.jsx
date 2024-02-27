@@ -1,18 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import {Link} from 'react-router-dom';
 import '../css/Navbar.css'
 function Navbar() {
+
+  const [username,setUser]=useState(localStorage.getItem('name'))
+  const [password,setPassword]=useState(localStorage.getItem('password'))
+  const [show,setShow]=useState(false)
+
+  
   const empty=()=>{
     window.location.reload(true);
     localStorage.removeItem('name')
     localStorage.removeItem('password')
     navigate('/');
+    
   }
 
-  let show=false;
-  if(localStorage.getItem('name') && localStorage.getItem('password')){
-    show=true;
-  }
+  useEffect(()=>{
+if(username && password){
+  setShow();
+  setShow(true)
+  
+}
+else{
+  setShow(false)
+}
+  },[])
+
+  
   
   return (
     <div className="m-2">
