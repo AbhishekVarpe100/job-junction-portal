@@ -93,6 +93,56 @@ router.put("/editphoto", upload.single("file"), (req, res) => {
     }
     // console.log(firstName,lastName,designation,skills,experience);
   })
+
+
+
+
+  // save changes
+  router.put('/savechanges',(req,res)=>{
+    const {id,background,textColor}=req.body;
+    // console.log(id,background,textColor)
+    connection.query('update resume set background=? , text_color=?,color1=null , color2=null, g_text_color=null, alignment=null where id=?',[background,textColor,id],(err,result)=>{
+      if(err){
+        console.log(err);
+      }
+      else{
+        res.json("set")
+      }
+    })
+  })
+
+
+
+  // save changes2 pattern2
+  router.put('/savechanges2',(req,res)=>{
+    const {id,g_color1,g_color2,g_TextColor,alignment}=req.body;
+    // console.log(id,g_color1,g_color2,g_TextColor,alignment);
+    connection.query(`update resume set background='#ffffff',text_color='#000000', color1=? , color2=?, g_text_color=?, alignment=? where id=?`,[g_color1,g_color2,g_TextColor,alignment,id],(err,result)=>{
+      if(err){
+        console.log(err);
+      }
+      else{
+        res.json("set")
+      }
+    })
+  })
+
+
+
+  // reset changes
+  router.put('/resetchanges',(req,res)=>{
+    const {id}=req.body;
+    connection.query("update resume set background='#ffffff' , text_color='#000000',color1=null , color2=null, g_text_color=null, alignment=null where id=?",[id],(err,result)=>{
+      if(err){
+        console.log(err);
+      }
+      else{
+        res.json("set")
+      }
+    })
+  })
   
+
+
   module.exports=router;
   

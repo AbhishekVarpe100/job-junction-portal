@@ -1,7 +1,8 @@
 const express=require('express')
 const router=express.Router();
 const connection=require('../Connection');
-const fs=require('fs')
+const fs=require('fs');
+const { runInNewContext } = require('vm');
 
 
 
@@ -11,6 +12,7 @@ router.delete('/deletephoto',(req,res)=>{
     console.log(name,password);
   
     try{
+
   
       connection.query('select photo from profilephoto where username=? and password=?',[name,password],(err,result)=>{
         if(err){
@@ -185,6 +187,23 @@ router.delete('/deleteinfo/:id',(req,res)=>{
     } catch (error) {
       console.log(error);
     }
+  })
+
+
+//delete resume
+  router.delete('/deleteresume',async(req,res)=>{
+    const {id,photo}=req.query;
+   await fs.unlink(`Public/Resume/${photo}`,(err)=>{
+    // console.log(err)
+   })
+    await connection.query('delete from resume where id=?',[id],(err,result)=>{
+      if(err){
+        console.log(err)
+      }
+      else{
+        res.json("deleted")
+      }
+    })
   })
 
   module.exports=router;

@@ -233,6 +233,23 @@ router.get('/appliedjobs',(req,res)=>{
 });
 
 
+router.get('/getresume',(req,res)=>{
+  const {user,password}=req.query;
+  try{
+    connection.query('select * from resume where username=? and password=?',[user,password],(err,result)=>{
+      if(err){
+        console.log(err)
+      }
+      else{
+        res.json(result[0])
+      }
+    })
+  }
+  catch(err){
+    console.log(err)
+  }
+})
+
   
 
   module.exports=router;

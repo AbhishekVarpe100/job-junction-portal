@@ -51,7 +51,6 @@ function App() {
         </Route>
 
 
-
         <Route path='/logout' element={<Login></Login>}></Route>
         <Route path='/profile' element={<ProfileCard></ProfileCard>}></Route>
         <Route path='/create' element={<CreateProfile></CreateProfile>}></Route>

@@ -266,5 +266,84 @@ router.post("/upload", upload.single("file"), (req, res) => {
 
 
 
+
+  const storage3 = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, "Public/Resume");
+    },
+    filename: (req, file, cb) => {
+      cb(
+        null,
+        file.fieldname + "_" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  
+  const upload3 = multer({
+    storage: storage3,
+  });
+
+
+  router.post('/resumedata',upload3.single('profilePhoto'),(req,res)=>{
+
+    const {firstname,
+      lastname,
+      profile,
+      education1,
+      education2,
+      technicalSkills,
+      softSkills,
+      certificates,
+      languages,
+      username,
+      password,phone,email}=req.body;
+      const file=req.file.filename;
+
+    try {
+      
+      connection.query('select * from resume where username=? and password=?',[username,password],(err,result)=>{
+        if(err){
+          console.log(err);
+        }
+        else if(result.length>0){
+          res.json('exist')
+        }
+        else{
+
+
+      if(req.body.education2==""){
+        connection.query('insert into resume(username,password,firstname,lastname,profile,education1,tech_skills,soft_skills,certificates,languages,photo,phone,email) values (?,?,?,?,?,?,?,?,?,?,?,?,?)',[username,password,firstname,lastname,profile,education1,technicalSkills,softSkills,certificates,languages,file,phone,email],(err,result)=>{
+          if(err){
+            console.log(err)
+          }
+          else{
+            res.json("response")
+          }
+        })
+      }
+      else{
+        connection.query('insert into resume(username,password,firstname,lastname,profile,education1,education2,tech_skills,soft_skills,certificates,languages,photo,phone,email) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)',[username,password,firstname,lastname,profile,education1,education2,technicalSkills,softSkills,certificates,languages,file,phone,email],(err,result)=>{
+          if(err){
+            console.log(err)
+          }
+          else{
+            res.json("response")
+          }
+        })
+      }
+          
+        }
+      })
+
+
+
+      
+    } catch (error) {
+      
+    }
+  })
+
+
+
   module.exports=router;
 

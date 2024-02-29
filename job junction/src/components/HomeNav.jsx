@@ -49,6 +49,12 @@ function HomeNav() {
                     <Link className="link-button" id="underline" style={Style} to="/home/articles">
                         <Button endIcon={<ArticleIcon /> } color='primary'>Articles</Button>
                     </Link>
+                    <Link className="link-button" id="underline" style={Style} to="/home/resume">
+                        <Button endIcon={<ArticleIcon /> } color='primary'>Resume Builder</Button>
+                    </Link>
+                    <Link className="link-button" id="underline" style={Style} to="/home/_resume">
+                        <Button endIcon={<ArticleIcon /> } color='primary'>Your Resume</Button>
+                    </Link>
                 </div>
             </div>
 
@@ -80,6 +86,14 @@ function HomeNav() {
                         <Link className="link-button" id="underline" style={Style} to="/home/articles">
                             <Button endIcon={<ArticleIcon /> } color='primary'>Articles</Button>
                         </Link>
+                        <br />
+                        <Link className="link-button" id="underline" style={Style} to="/home/resume">
+                        <Button endIcon={<ArticleIcon /> } color='primary'>Resume Builder</Button>
+                    </Link>
+                    <br />
+                    <Link className="link-button" id="underline" style={Style} to="/home/_resume">
+                        <Button endIcon={<ArticleIcon /> } color='primary'>Your Resume</Button>
+                    </Link>
                     </div>
                 </div>
             </center>
