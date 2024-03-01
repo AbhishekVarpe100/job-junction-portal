@@ -122,7 +122,7 @@ const YourResume = () => {
 
   return (
     <>
-    {data? <div style={{marginBottom:'10cm'}}><div style={{ backgroundColor: `${data.background!=null? data.background:<></>}`, color: `${data.text_color=='#000000'?data.g_text_color: data.text_color}`,
+    {data? <div className='container' style={{marginBottom:'10cm'}}><div style={{ backgroundColor: `${data.background!=null? data.background:<></>}`, color: `${data.text_color=='#000000'?data.g_text_color: data.text_color}`,
     
     backgroundImage :`linear-gradient(to ${data.alignment}, ${data.color1}, ${data.color2})`,
     
@@ -217,14 +217,14 @@ const YourResume = () => {
 
 {pattern2?<div>
       <label htmlFor="color1">Color1</label>
-      <input value={g_color1} required title='Choose background color' id='color1' type="color"  onChange={(e)=>setColor1(e.target.value)}  className='w-25' />
+      <input value={g_color1} required title='Choose color1' id='color1' type="color"  onChange={(e)=>setColor1(e.target.value)}  className='w-25' />
       <br />
       <label htmlFor="color2">Color2</label>
-      <input value={g_color2} required title='Choose text color' id='color2' type="color" onChange={(e)=>setColor2(e.target.value)}  className='w-25' />
+      <input value={g_color2} required title='Choose color2' id='color2' type="color" onChange={(e)=>setColor2(e.target.value)}  className='w-25' />
       <label htmlFor="text_color">Text color</label>
       <input value={g_TextColor} required title='Choose text color' id='text_color' type="color"  onChange={(e)=>set_g_textColor(e.target.value)}  className='w-25' />
 
-<br />
+    <br />
       <select value={alignment} onChange={(e)=>setAlignment(e.target.value)}>
         <option value="">---select alignment---</option>
         <option value="left">To left</option>

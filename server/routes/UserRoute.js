@@ -15,6 +15,7 @@ router.post("/register", async (req, res) => {
       (err, result) => {
         if (err) {
           console.log(err);
+          res.status(500).json("Internal server error")
         } else if (result.length == 0) {
           connection.query(
             "insert into register(name,email,password) values(?,?,?)",
@@ -23,7 +24,7 @@ router.post("/register", async (req, res) => {
               if (err) {
                 console.log(err);
               } else {
-                res.json("success");
+                res.status(200).json("success");
               }
             }
           );
@@ -54,7 +55,7 @@ router.post("/login", (req, res) => {
               }
             });
           } else {
-            res.json("user_not_found");
+            res.status(404).json("user_not_found");
           }
         }
       );

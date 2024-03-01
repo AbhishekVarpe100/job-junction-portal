@@ -6,7 +6,6 @@ const fs=require('fs')
 
 const connection=require('../Connection')
 
-
 // creating a storage for the profile image
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -39,12 +38,14 @@ router.put("/editphoto", upload.single("file"), (req, res) => {
       connection.query('select photo from profilephoto where username=? and password=?',[username,password],(err,result)=>{
         if(err){
           console.log(err);
+          res.status(500).json('Internal server error')
         }
         else{
           // fs.unlinkSync(`./Public/Images/${result[0].photo}`)
           fs.unlink(`./Public/Images/${result[0].photo}`,(err,result)=>{
             if(err){
               console.log(err);
+              res.status(500).json('Internal server error');
             }
             else{
   
@@ -54,6 +55,7 @@ router.put("/editphoto", upload.single("file"), (req, res) => {
                 (err, result) => {
                   if (err) {
                     console.log(err);
+                    res.status(500).json('Internal server error');
                   } else {
                     res.status(200).send("uploaded");
                   }
@@ -64,7 +66,6 @@ router.put("/editphoto", upload.single("file"), (req, res) => {
           })
         }
       })
-  
     } catch (error) {
       console.log(error);
     }
@@ -83,18 +84,18 @@ router.put("/editphoto", upload.single("file"), (req, res) => {
       connection.query(query,[firstName,lastName,designation,skills,experience,id],(err,result)=>{
         if(err){
           console.log(err);
+          res.status(500).json('Internal server error')
         }
         else{
-          res.json('edited')
+          res.status(200).json('edited')
         }
       })
     } catch (error) {
       console.log(error)
+      res.status(500).json('Intenal server error');
     }
     // console.log(firstName,lastName,designation,skills,experience);
   })
-
-
 
 
   // save changes
@@ -104,13 +105,13 @@ router.put("/editphoto", upload.single("file"), (req, res) => {
     connection.query('update resume set background=? , text_color=?,color1=null , color2=null, g_text_color=null, alignment=null where id=?',[background,textColor,id],(err,result)=>{
       if(err){
         console.log(err);
+        res.status(500).json('Internal server error')
       }
       else{
-        res.json("set")
+        res.status(200).json("set")
       }
     })
   })
-
 
 
   // save changes2 pattern2
@@ -120,9 +121,10 @@ router.put("/editphoto", upload.single("file"), (req, res) => {
     connection.query(`update resume set background='#ffffff',text_color='#000000', color1=? , color2=?, g_text_color=?, alignment=? where id=?`,[g_color1,g_color2,g_TextColor,alignment,id],(err,result)=>{
       if(err){
         console.log(err);
+        res.status(500).json("Internal server error");
       }
       else{
-        res.json("set")
+        res.status(200).json("set")
       }
     })
   })
@@ -135,9 +137,10 @@ router.put("/editphoto", upload.single("file"), (req, res) => {
     connection.query("update resume set background='#ffffff' , text_color='#000000',color1=null , color2=null, g_text_color=null, alignment=null where id=?",[id],(err,result)=>{
       if(err){
         console.log(err);
+        res.status(500).json('Internal server error');
       }
       else{
-        res.json("set")
+        res.status(200).json("set")
       }
     })
   })

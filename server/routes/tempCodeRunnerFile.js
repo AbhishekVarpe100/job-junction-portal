@@ -1,1 +1,0 @@
-g_color1,g_color2,g_TextColor,alignment
