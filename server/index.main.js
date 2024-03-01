@@ -68,7 +68,7 @@ app.post("/register", async (req, res) => {
   );
 });
 
-//Login
+//Login  //
 
 app.post("/login", (req, res) => {
   const { name, password } = req.body;
