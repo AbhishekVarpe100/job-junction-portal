@@ -23,7 +23,7 @@ const Login = ({ onChildData }) => {
           localStorage.setItem('name', name);
           localStorage.setItem('password', password);
 
-          setTimeout(() => {
+          
             setLogin("Login Successful");
             setTimeout(() => {
               setLogin("");
@@ -33,7 +33,7 @@ const Login = ({ onChildData }) => {
               };
               sendDataToParent();
             }, 3000);
-          }, 1000);
+        
         } else if (res.data === "failed") {
           setTimeout(() => {
             setLogin("Incorrect password");
